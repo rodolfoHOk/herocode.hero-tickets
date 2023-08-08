@@ -11,7 +11,7 @@
 
 ## Endpoints
 
-- [ ] criar evento
+- [x] criar evento
 - [ ] buscar evento por localização
 - [ ] buscar evento por categoria
 - [ ] buscar evento por nome
