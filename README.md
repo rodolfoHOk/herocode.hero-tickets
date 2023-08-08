@@ -8,3 +8,13 @@
 - npx tsc --init
 - edit tsconfig.json
 - npm install -D tsx
+
+## Endpoints
+
+- [ ] criar evento
+- [ ] buscar evento por localização
+- [ ] buscar evento por categoria
+- [ ] buscar evento por nome
+- [ ] buscar evento por id
+- [ ] verificar se usuário existe
+- [ ] inserir usuário no evento
