@@ -10,8 +10,9 @@ class Event {
     public description: string,
     public categories: string[],
     public banner: string,
+    public flyers: string[],
     public coupons: string[],
-    public price: Price,
+    public price: Price[],
     public city: string,
     public participants: User[]
   ) {}

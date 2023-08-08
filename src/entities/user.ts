@@ -1,5 +1,5 @@
 class User {
-  constructor(public amount: string, public sector: string) {}
+  constructor(public name: string, public email: string) {}
 }
 
 export { User };

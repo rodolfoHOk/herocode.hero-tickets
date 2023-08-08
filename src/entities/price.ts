@@ -1,5 +1,5 @@
 class Price {
-  constructor(public name: string, public email: string) {}
+  constructor(public amount: string, public sector: string) {}
 }
 
 export { Price };

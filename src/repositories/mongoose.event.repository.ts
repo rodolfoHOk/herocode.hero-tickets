@@ -12,6 +12,7 @@ const eventSchema = new mongoose.Schema({
   description: String,
   categories: [String],
   banner: String,
+  flyers: [String],
   coupons: [String],
   price: { type: Array },
   city: String,
