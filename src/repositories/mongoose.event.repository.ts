@@ -39,6 +39,18 @@ class MongooseEventRepository implements EventRepository {
 
     return findEvent ? findEvent.toObject() : undefined;
   }
+
+  async findByCity(city: string): Promise<Event[]> {
+    const findEvents = await EventModel.find({ city }).exec();
+
+    return findEvents.map((event) => event.toObject());
+  }
+
+  async findByCategory(category: string): Promise<Event[]> {
+    const findEvents = await EventModel.find({ categories: category }).exec();
+
+    return findEvents.map((event) => event.toObject());
+  }
 }
 
 export { MongooseEventRepository };

@@ -33,6 +33,41 @@ class EventController {
       next(error);
     }
   }
+
+  async findByLocation(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    const { latitude, longitude } = request.query;
+
+    try {
+      const events = await this.eventUseCase.findByLocation(
+        String(latitude),
+        String(longitude)
+      );
+
+      return response.status(200).json(events);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async findByCategory(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    const { category } = request.params;
+
+    try {
+      const events = await this.eventUseCase.findByCategory(String(category));
+
+      return response.status(200).json(events);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export { EventController };

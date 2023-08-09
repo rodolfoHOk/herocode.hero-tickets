@@ -25,6 +25,16 @@ class EventRoutes {
       ]),
       this.eventController.create.bind(this.eventController)
     );
+
+    this.router.get(
+      '/',
+      this.eventController.findByLocation.bind(this.eventController)
+    );
+
+    this.router.get(
+      '/category/:category',
+      this.eventController.findByCategory.bind(this.eventController)
+    );
   }
 }
 
