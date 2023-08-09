@@ -7,6 +7,7 @@
 - Express
 - MongoDB (Atlas and mongoose)
 - Jest
+- Supertest
 
 ## Iniciando o projeto do backend
 
