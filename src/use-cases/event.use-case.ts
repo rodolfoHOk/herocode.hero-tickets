@@ -117,8 +117,6 @@ class EventUseCase {
       user = await userRepository.add(participant);
     }
 
-    console.log(user);
-
     if (event.participants.includes(user._id)) {
       throw new HttpException(400, 'Participant already exists');
     }
