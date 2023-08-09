@@ -21,7 +21,7 @@ describe('Event test', () => {
         longitude: '-43.981556',
       },
       coupons: [],
-      date: new Date(2023, 8, 12, 19, 30, 0),
+      date: new Date(),
       participants: [],
       categories: ['Musical', 'Sertanejo universitário'],
       banner: '',

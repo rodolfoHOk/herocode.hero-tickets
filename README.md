@@ -23,6 +23,10 @@
 - npm install -D ts-jest
 - edit jest.config.ts
 
+## Diagrama de Classes
+
+![Diagrama](/diagrama-classe.png)
+
 ## Endpoints
 
 - [x] criar evento
@@ -32,3 +36,9 @@
 - [ ] buscar evento por id
 - [ ] verificar se usuário existe
 - [ ] inserir usuário no evento
+
+## Links
+
+- [RoadMap](https://herocodebr.notion.site/herocodebr/Semana-do-Her-i-RoadMap-Hero-Tickets-08ef3438d7e84ce899a13c348b653194)
+
+- [Figma](https://www.figma.com/file/u8SIJScBeIMTUUa9JywATo/Hero-Week-02?type=design&node-id=0-1&mode=design&t=bBIdarCUpHEIGGyz-0)
