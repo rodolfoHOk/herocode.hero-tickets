@@ -14,7 +14,7 @@ class Event {
     public coupons: string[],
     public price: Price[],
     public city: string,
-    public participants: User[]
+    public participants: string[]
   ) {}
 }
 

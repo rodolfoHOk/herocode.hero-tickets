@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Event } from '../entities/event';
 import { HttpException } from '../interfaces/http-exception';
 import { EventRepository } from '../repositories/event.repository';
+import { MongooseUserRepository } from '../repositories/mongoose.user.repository';
 
 class EventUseCase {
   constructor(private eventRepository: EventRepository) {}
@@ -92,6 +93,41 @@ class EventUseCase {
     const events = await this.eventRepository.findById(id);
 
     return events;
+  }
+
+  async addParticipant(id: string, name: string, email: string) {
+    let event = await this.eventRepository.findById(id);
+
+    if (!event) {
+      throw new HttpException(400, 'Event not found');
+    }
+
+    const userRepository = new MongooseUserRepository();
+
+    const participant = {
+      name,
+      email,
+    };
+
+    let user: any = {};
+
+    user = await userRepository.existsByEmail(email);
+
+    if (!user) {
+      user = await userRepository.add(participant);
+    }
+
+    console.log(user);
+
+    if (event.participants.includes(user._id)) {
+      throw new HttpException(400, 'Participant already exists');
+    }
+
+    event.participants.push(user._id);
+
+    await this.eventRepository.update(id, event);
+
+    return event;
   }
 
   private async getCityNameByCoordinates(latitude: string, longitude: string) {

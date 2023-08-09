@@ -34,8 +34,8 @@
 - [x] buscar evento por categoria
 - [x] buscar evento por nome
 - [x] buscar evento por id
-- [ ] verificar se usuário existe
-- [ ] inserir usuário no evento
+- [x] verificar se usuário existe
+- [x] inserir usuário no evento
 
 ## Links
 
