@@ -30,10 +30,10 @@
 ## Endpoints
 
 - [x] criar evento
-- [ ] buscar evento por localização
-- [ ] buscar evento por categoria
-- [ ] buscar evento por nome
-- [ ] buscar evento por id
+- [x] buscar evento por localização
+- [x] buscar evento por categoria
+- [x] buscar evento por nome
+- [x] buscar evento por id
 - [ ] verificar se usuário existe
 - [ ] inserir usuário no evento
 

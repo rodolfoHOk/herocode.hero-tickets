@@ -17,6 +17,9 @@ class EventUseCase {
     if (!eventData.location) {
       throw new HttpException(400, 'Location is required');
     }
+    if (!eventData.date) {
+      throw new HttpException(400, 'Date is required');
+    }
 
     const verifyEvent = await this.eventRepository.findByLocationAndDate(
       eventData.location,
@@ -67,6 +70,26 @@ class EventUseCase {
     }
 
     const events = await this.eventRepository.findByCategory(category);
+
+    return events;
+  }
+
+  async findByName(name: string): Promise<Event[]> {
+    if (!name) {
+      throw new HttpException(400, 'Name is required');
+    }
+
+    const events = await this.eventRepository.findByName(name);
+
+    return events;
+  }
+
+  async findById(id: string): Promise<Event | undefined> {
+    if (!id) {
+      throw new HttpException(400, 'ID is required');
+    }
+
+    const events = await this.eventRepository.findById(id);
 
     return events;
   }

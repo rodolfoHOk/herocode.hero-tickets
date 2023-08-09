@@ -12,6 +12,10 @@ interface EventRepository {
   findByCity(city: string): Promise<Event[]>;
 
   findByCategory(category: string): Promise<Event[]>;
+
+  findByName(name: string): Promise<Event[]>;
+
+  findById(id: string): Promise<Event | undefined>;
 }
 
 export { EventRepository };
