@@ -1,4 +1,4 @@
-import mongoose, { ObjectId } from 'mongoose';
+import mongoose from 'mongoose';
 import { User } from '../entities/user';
 import { UserRepository } from './user.repository';
 

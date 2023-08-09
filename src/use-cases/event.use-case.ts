@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import { Event } from '../entities/event';
 import { HttpException } from '../interfaces/http-exception';
 import { EventRepository } from '../repositories/event.repository';

@@ -1,6 +1,5 @@
 import { Location } from './location';
 import { Price } from './price';
-import { User } from './user';
 
 class Event {
   constructor(

@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import { Event } from '../entities/event';
 import { EventRepository } from './event.repository';
 import { Location } from '../entities/location';
-import { User } from '../entities/user';
 
 const eventSchema = new mongoose.Schema({
   title: String,
