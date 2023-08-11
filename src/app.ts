@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import path from 'node:path';
 import cors from 'cors';
 import { connect } from './infra/database';
 import { errorMiddleware } from './middlewares/error.middleware';
@@ -23,6 +24,10 @@ class App {
   }
 
   private initializeRoutes() {
+    this.app.use(
+      '/uploads',
+      express.static(path.join(__dirname, 'temp', 'uploads'))
+    );
     this.app.use('/events', this.eventRoutes.router);
   }
 
