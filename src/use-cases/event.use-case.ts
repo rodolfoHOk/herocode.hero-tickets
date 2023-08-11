@@ -29,7 +29,7 @@ class EventUseCase {
       throw new HttpException(400, 'Event already exists');
     }
 
-    // const cityName = await this.getCityNameByCoordinates(
+    // const { cityName, formattedAddress } = await this.getCityNameByCoordinates(
     //   eventData.location.latitude,
     //   eventData.location.longitude
     // );
@@ -37,6 +37,8 @@ class EventUseCase {
       ...eventData,
       // city: cityName,
       city: eventData.city,
+      // formattedAddress,
+      formattedAddress: eventData.formattedAddress,
     };
 
     const result = await this.eventRepository.add(eventData);
@@ -45,7 +47,10 @@ class EventUseCase {
   }
 
   async findByLocation(latitude: string, longitude: string): Promise<Event[]> {
-    // const cityName = await this.getCityNameByCoordinates(latitude, longitude);
+    // const { cityName } = await this.getCityNameByCoordinates(
+    //   latitude,
+    //   longitude
+    // );
     const cityName = 'Belo Horizonte';
 
     const eventsByCity = await this.eventRepository.findByCity(cityName);
@@ -142,7 +147,12 @@ class EventUseCase {
             type.types.includes('administrative_area_level_2') &&
             type.types.includes('political')
         );
-        return cityType.long_name;
+        const formattedAddress = response.data.results[0].formattedAddress;
+
+        return {
+          cityName: cityType.long_name,
+          formattedAddress,
+        };
       }
 
       throw new HttpException(404, 'City not found');

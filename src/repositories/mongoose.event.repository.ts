@@ -17,6 +17,7 @@ const eventSchema = new mongoose.Schema({
   coupons: [String],
   price: { type: Array },
   city: String,
+  formattedAddress: String,
   participants: { type: Array, ref: 'User' },
   createdAt: { type: Date, default: Date.now() },
 });
