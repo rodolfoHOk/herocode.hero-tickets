@@ -79,6 +79,25 @@ class EventUseCase {
     return events;
   }
 
+  async filterBy(
+    latitude: number,
+    longitude: number,
+    category: string,
+    name: string,
+    date: Date,
+    radius: string,
+    price: string
+  ): Promise<Event[]> {
+    const events = await this.eventRepository.filterBy(
+      name,
+      date,
+      category,
+      price
+    );
+
+    return events;
+  }
+
   async findMain(): Promise<Event[]> {
     const events = await this.eventRepository.findMain(new Date());
 

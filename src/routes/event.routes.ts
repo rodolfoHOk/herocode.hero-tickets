@@ -32,6 +32,11 @@ class EventRoutes {
     );
 
     this.router.get(
+      '/filter',
+      this.eventController.filterBy.bind(this.eventController)
+    );
+
+    this.router.get(
       '/category/:category',
       this.eventController.findByCategory.bind(this.eventController)
     );

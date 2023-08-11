@@ -69,6 +69,27 @@ class EventController {
     }
   }
 
+  async filterBy(request: Request, response: Response, next: NextFunction) {
+    const { latitude, longitude, category, name, date, radius, price } =
+      request.query;
+
+    try {
+      const events = await this.eventUseCase.filterBy(
+        Number(latitude),
+        Number(longitude),
+        String(category),
+        String(name),
+        new Date(String(date)),
+        String(radius),
+        String(price)
+      );
+
+      return response.status(200).json(events);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async findMain(request: Request, response: Response, next: NextFunction) {
     try {
       const events = await this.eventUseCase.findMain();
