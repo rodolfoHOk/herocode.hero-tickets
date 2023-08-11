@@ -14,6 +14,8 @@ interface EventRepository {
 
   findByCategory(category: string): Promise<Event[]>;
 
+  findMain(date: Date): Promise<Event[]>;
+
   findByName(name: string): Promise<Event[]>;
 
   findById(id: string): Promise<Event | undefined>;

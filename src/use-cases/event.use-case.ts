@@ -79,6 +79,12 @@ class EventUseCase {
     return events;
   }
 
+  async findMain(): Promise<Event[]> {
+    const events = await this.eventRepository.findMain(new Date());
+
+    return events;
+  }
+
   async findByName(name: string): Promise<Event[]> {
     if (!name) {
       throw new HttpException(400, 'Name is required');
