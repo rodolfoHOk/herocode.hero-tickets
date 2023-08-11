@@ -57,7 +57,10 @@ class MongooseEventRepository implements EventRepository {
     const endDate = new Date(date);
     endDate.setMonth(endDate.getMonth() + 1);
     const findEvents = await EventModel.find({
-      date: { $gte: date, $lt: endDate },
+      date: {
+        $gte: date.toDateString(),
+        $lte: endDate.toDateString(),
+      },
     })
       .limit(4)
       .exec();

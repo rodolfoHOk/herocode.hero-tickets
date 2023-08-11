@@ -32,11 +32,6 @@ class EventRoutes {
     );
 
     this.router.get(
-      '/:id',
-      this.eventController.findById.bind(this.eventController)
-    );
-
-    this.router.get(
       '/category/:category',
       this.eventController.findByCategory.bind(this.eventController)
     );
@@ -49,6 +44,11 @@ class EventRoutes {
     this.router.get(
       '/name/:name',
       this.eventController.findByName.bind(this.eventController)
+    );
+
+    this.router.get(
+      '/:id',
+      this.eventController.findById.bind(this.eventController)
     );
 
     this.router.post(
