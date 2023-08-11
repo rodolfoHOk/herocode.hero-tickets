@@ -54,25 +54,25 @@ class MongooseEventRepository implements EventRepository {
   }
 
   async filterBy(
-    name: string,
-    date: Date,
-    category: string,
-    price: string
+    name?: string,
+    date?: string,
+    category?: string,
+    price?: string
   ): Promise<Event[]> {
     const findEvents = await EventModel.find({
       title: {
         $regex: name,
         $options: 'i',
       },
-      date: {
-        $gte: date.toDateString(),
-      },
-      price: {
-        amount: {
-          $gte: price,
-        },
-      },
-      categories: category,
+      // date: {
+      //   $gte: new Date(date as string).toDateString(),
+      // },
+      // price: {
+      //   amount: {
+      //     $gte: price,
+      //   },
+      // },
+      // categories: category,
     }).exec();
 
     return findEvents.map((event) => event.toObject());

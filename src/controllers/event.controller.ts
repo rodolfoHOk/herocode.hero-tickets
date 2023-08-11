@@ -79,7 +79,7 @@ class EventController {
         Number(longitude),
         String(category),
         String(name),
-        new Date(String(date)),
+        String(date),
         String(radius),
         String(price)
       );

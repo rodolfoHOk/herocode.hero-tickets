@@ -15,10 +15,10 @@ interface EventRepository {
   findByCategory(category: string): Promise<Event[]>;
 
   filterBy(
-    name: string,
-    date: Date,
-    category: string,
-    price: string
+    name?: string,
+    date?: string,
+    category?: string,
+    price?: string
   ): Promise<Event[]>;
 
   findMain(date: Date): Promise<Event[]>;

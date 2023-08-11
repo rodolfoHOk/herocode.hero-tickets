@@ -80,14 +80,16 @@ class EventUseCase {
   }
 
   async filterBy(
-    latitude: number,
-    longitude: number,
-    category: string,
-    name: string,
-    date: Date,
-    radius: string,
-    price: string
+    latitude?: number,
+    longitude?: number,
+    category?: string,
+    name?: string,
+    date?: string,
+    radius?: string,
+    price?: string
   ): Promise<Event[]> {
+    const dateFilter = date ? new Date(date) : undefined;
+
     const events = await this.eventRepository.filterBy(
       name,
       date,
