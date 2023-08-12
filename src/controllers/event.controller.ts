@@ -74,15 +74,15 @@ class EventController {
       request.query;
 
     try {
-      const events = await this.eventUseCase.filterBy(
-        Number(latitude),
-        Number(longitude),
-        String(category),
-        String(name),
-        String(date),
-        String(radius),
-        String(price)
-      );
+      const events = await this.eventUseCase.filterBy({
+        latitude: Number(latitude),
+        longitude: Number(longitude),
+        category: String(category),
+        name: String(name),
+        date: String(date),
+        radius: String(radius),
+        price: String(price),
+      });
 
       return response.status(200).json(events);
     } catch (error) {

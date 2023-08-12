@@ -4,6 +4,16 @@ import { HttpException } from '../interfaces/http-exception';
 import { EventRepository } from '../repositories/event.repository';
 import { MongooseUserRepository } from '../repositories/mongoose.user.repository';
 
+export interface IFilterProps {
+  latitude?: number;
+  longitude?: number;
+  category?: string;
+  name?: string;
+  date?: string;
+  radius?: string;
+  price?: string;
+}
+
 class EventUseCase {
   constructor(private eventRepository: EventRepository) {}
 
@@ -63,7 +73,7 @@ class EventUseCase {
         Number(event.location.longitude)
       );
 
-      return distance <= 3;
+      return distance <= 100;
     });
 
     return eventsWithRadius3;
@@ -79,23 +89,18 @@ class EventUseCase {
     return events;
   }
 
-  async filterBy(
-    latitude?: number,
-    longitude?: number,
-    category?: string,
-    name?: string,
-    date?: string,
-    radius?: string,
-    price?: string
-  ): Promise<Event[]> {
-    const dateFilter = date ? new Date(date) : undefined;
+  async filterBy(filter: IFilterProps): Promise<Event[]> {
+    const dateFilter = filter.date ? new Date(filter.date) : undefined;
 
-    const events = await this.eventRepository.filterBy(
-      name,
-      date,
-      category,
-      price
-    );
+    const events = await this.eventRepository.filterBy({
+      name: filter.name,
+      date: filter.date,
+      category: filter.category,
+      price: filter.price,
+      latitude: filter.latitude,
+      longitude: filter.longitude,
+      radius: filter.radius,
+    });
 
     return events;
   }

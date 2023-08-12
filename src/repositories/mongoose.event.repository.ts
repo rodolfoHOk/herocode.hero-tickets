@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { Event } from '../entities/event';
 import { EventRepository } from './event.repository';
 import { Location } from '../entities/location';
+import { IFilterProps } from '../use-cases/event.use-case';
 
 const eventSchema = new mongoose.Schema({
   title: String,
@@ -53,27 +54,43 @@ class MongooseEventRepository implements EventRepository {
     return findEvents.map((event) => event.toObject());
   }
 
-  async filterBy(
-    name?: string,
-    date?: string,
-    category?: string,
-    price?: string
-  ): Promise<Event[]> {
-    const findEvents = await EventModel.find({
-      title: {
-        $regex: name,
-        $options: 'i',
-      },
-      // date: {
-      //   $gte: new Date(date as string).toDateString(),
-      // },
-      // price: {
-      //   amount: {
-      //     $gte: price,
-      //   },
-      // },
-      // categories: category,
-    }).exec();
+  async filterBy({
+    name,
+    date,
+    category,
+    price,
+    latitude,
+    longitude,
+    radius,
+  }: IFilterProps): Promise<Event[]> {
+    const query = {
+      $and: [
+        { title: name ? { $regex: name, $options: 'i' } : { $exists: true } },
+        { date: date ? { $gte: date } : { $exists: true } },
+        { categories: category ? { $in: [category] } : { $exists: true } },
+        { 'price.amount': { $gte: price ? price : 0 } },
+        {
+          'location.latitude':
+            latitude && longitude && radius
+              ? {
+                  $gte: String(latitude - Number(radius)),
+                  $lte: String(latitude + Number(radius)),
+                }
+              : { $exists: true },
+        },
+        {
+          'location.longitude':
+            latitude && longitude && radius
+              ? {
+                  $gte: String(longitude - Number(radius)),
+                  $lte: String(longitude + Number(radius)),
+                }
+              : { $exists: true },
+        },
+      ],
+    };
+
+    const findEvents = await EventModel.find(query).exec();
 
     return findEvents.map((event) => event.toObject());
   }
